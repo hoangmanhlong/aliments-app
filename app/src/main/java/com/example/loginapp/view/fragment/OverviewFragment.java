@@ -21,7 +21,7 @@ import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderView;
 
 
-public class OverviewFragment extends Fragment {
+public class OverviewFragment extends Fragment implements OverviewView {
     private FragmentOverviewBinding binding;
     private SliderView sliderView;
     private OverviewPresenter overviewPresenter;
@@ -57,6 +57,7 @@ public class OverviewFragment extends Fragment {
 
     }
 
+    @Override
     public void goHomeScreen() {
         Navigation.findNavController(binding.getRoot())
             .navigate(R.id.action_overviewFragment_to_homeFragment);

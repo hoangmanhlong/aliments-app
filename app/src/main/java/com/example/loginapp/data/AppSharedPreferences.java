@@ -4,7 +4,7 @@ package com.example.loginapp.data;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.example.loginapp.model.Account;
+import com.example.loginapp.model.entity.Account;
 import com.google.gson.Gson;
 
 import org.jetbrains.annotations.Nullable;

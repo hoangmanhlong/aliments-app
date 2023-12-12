@@ -1,33 +1,28 @@
 package com.example.loginapp.presenter;
 
-import com.example.loginapp.model.Listener;
-import com.example.loginapp.model.UserInterator;
-import com.example.loginapp.view.fragment.RegisterFragment;
+import com.example.loginapp.model.interator.RegisterInterator;
+import com.example.loginapp.model.listener.RegisterListener;
+import com.example.loginapp.view.fragment.RegisterView;
 
-public class RegisterPresenter implements Listener {
-    private RegisterFragment registerFragment;
-    private UserInterator userInterator;
+public class RegisterPresenter implements RegisterListener {
+    private RegisterInterator interator;
+    private RegisterView view;
 
-    public RegisterPresenter(RegisterFragment registerFragment) {
-        this.registerFragment = registerFragment;
-        userInterator = new UserInterator();
+    public RegisterPresenter(RegisterView view) {
+        this.view = view;
+        interator = new RegisterInterator(this);
     }
 
     public void register(String email, String password, String confirmPassword) {
-        userInterator.registerAccount(registerFragment.getContext(), email, password, confirmPassword, this);
+        interator.register(email, password, confirmPassword);
     }
 
     public void goLoginScreen() {
-        registerFragment.goLoginScreen();
+        view.goLoginScreen();
     }
 
     @Override
-    public void onSuccess(String message) {
-        registerFragment.showSuccess(message);
-    }
-
-    @Override
-    public void onFail(String message) {
-        registerFragment.showFail(message);
+    public void onRegisterMessage(String message) {
+        view.onRegisterMessage(message);
     }
 }

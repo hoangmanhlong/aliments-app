@@ -19,7 +19,7 @@ import com.example.loginapp.R;
 import com.example.loginapp.databinding.FragmentRegisterBinding;
 import com.example.loginapp.presenter.RegisterPresenter;
 
-public class RegisterFragment extends Fragment {
+public class RegisterFragment extends Fragment implements RegisterView {
     private FragmentRegisterBinding binding;
     private RegisterPresenter registerPresenter;
 
@@ -69,11 +69,8 @@ public class RegisterFragment extends Fragment {
             .navigate(R.id.action_registerFragment_to_loginFragment, bundle);
     }
 
-    public void showSuccess(String message) {
-        Toast.makeText(this.getContext(), message, Toast.LENGTH_SHORT).show();
-    }
-
-    public void showFail(String message) {
+    @Override
+    public void onRegisterMessage(String message) {
         Toast.makeText(this.getContext(), message, Toast.LENGTH_SHORT).show();
     }
 

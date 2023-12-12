@@ -1,4 +1,4 @@
-package com.example.loginapp.model;
+package com.example.loginapp.model.entity;
 
 
 public class Account {
@@ -17,4 +17,6 @@ public class Account {
     public String getPassword() {
         return password;
     }
+
+
 }

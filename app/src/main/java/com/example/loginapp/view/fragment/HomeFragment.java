@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -13,7 +14,7 @@ import com.example.loginapp.R;
 import com.example.loginapp.databinding.FragmentHomeBinding;
 import com.example.loginapp.presenter.HomePresenter;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements HomeView {
     private FragmentHomeBinding binding;
     private HomePresenter homePresenter;
 
@@ -42,8 +43,14 @@ public class HomeFragment extends Fragment {
         homePresenter.logout();
     }
 
-    public void goLogoutScreen() {
+    @Override
+    public void goOverviewScreen() {
         Navigation.findNavController(binding.getRoot())
             .navigate(R.id.action_homeFragment_to_overviewFragment);
+    }
+
+    @Override
+    public void onLogoutMessage(String message) {
+        Toast.makeText(this.getContext(), message, Toast.LENGTH_SHORT).show();
     }
 }

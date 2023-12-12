@@ -1,33 +1,29 @@
 package com.example.loginapp.presenter;
 
-import com.example.loginapp.model.Listener;
-import com.example.loginapp.model.UserInterator;
-import com.example.loginapp.view.fragment.LoginFragment;
+import com.example.loginapp.model.interator.LoginInteractor;
+import com.example.loginapp.model.listener.LoginListener;
+import com.example.loginapp.view.fragment.LoginView;
 
-public class LoginPresenter implements Listener {
-    private LoginFragment loginFragment;
-    private UserInterator userInterator;
+public class LoginPresenter implements LoginListener {
+    private final LoginView view;
+    private final LoginInteractor loginInteractor;
 
-    public LoginPresenter(LoginFragment loginFragment) {
-        this.loginFragment = loginFragment;
-        userInterator = new UserInterator();
+    public LoginPresenter(LoginView view) {
+        this.view = view;
+        loginInteractor = new LoginInteractor(this);
     }
 
+    @Override
     public void goHomeScreen() {
-        loginFragment.goHomeScreen();
+        view.goHomeScreen();
     }
 
-    public void putUserInput(String email, String password) {
-        userInterator.login(loginFragment.getContext(), email, password, this);
-    }
-
-    @Override
-    public void onSuccess(String message) {
-        loginFragment.showSuccess(message);
+    public void login(String email, String password) {
+        loginInteractor.login(email, password);
     }
 
     @Override
-    public void onFail(String message) {
-        loginFragment.showFail(message);
+    public void onLoginMessage(String message) {
+        view.onLoginMessage(message);
     }
 }

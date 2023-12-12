@@ -1,22 +1,29 @@
 package com.example.loginapp.presenter;
 
-import com.example.loginapp.model.UserInterator;
-import com.example.loginapp.view.fragment.HomeFragment;
+import com.example.loginapp.model.interator.HomeInterator;
+import com.example.loginapp.model.listener.HomeListener;
+import com.example.loginapp.view.fragment.HomeView;
 
-public class HomePresenter {
-    private HomeFragment homeFragment;
-    private UserInterator userInterator;
+public class HomePresenter implements HomeListener {
+    private HomeView view;
+    private HomeInterator interator;
 
-    public HomePresenter(HomeFragment homeFragment) {
-        this.homeFragment = homeFragment;
-        userInterator = new UserInterator();
+    public HomePresenter(HomeView view) {
+        this.view = view;
+        interator = new HomeInterator(this);
     }
 
     public void logout() {
-        userInterator.logout(homeFragment.getContext(), this);
+        interator.logout();
     }
 
-    public void goLoginScreen() {
-        homeFragment.goLogoutScreen();
+    @Override
+    public void goOverviewScreen() {
+        view.goOverviewScreen();
+    }
+
+    @Override
+    public void onLogoutMessage(String message) {
+        view.onLogoutMessage(message);
     }
 }

@@ -1,4 +1,4 @@
-package com.example.loginapp.view;
+package com.example.loginapp.view.activities;
 
 import android.content.Intent;
 import android.os.Bundle;

@@ -1,24 +1,27 @@
 package com.example.loginapp.presenter;
 
-import com.example.loginapp.model.UserInterator;
-import com.example.loginapp.view.fragment.OverviewFragment;
+import com.example.loginapp.model.interator.OverviewInterator;
+import com.example.loginapp.model.listener.OverviewListener;
+import com.example.loginapp.view.fragment.OverviewView;
 
-public class OverviewPresenter {
-    private OverviewFragment overviewFragment;
+public class OverviewPresenter implements OverviewListener {
+    private OverviewView view;
 
-    private UserInterator userInterator;
+    private OverviewInterator overviewInterator;
 
-    public OverviewPresenter(OverviewFragment overviewFragment) {
-        this.overviewFragment = overviewFragment;
-        userInterator = new UserInterator();
-        userIsExist();
+    public OverviewPresenter(OverviewView view) {
+        this.view = view;
+        overviewInterator = new OverviewInterator(this);
+
     }
 
-    public void userIsExist() {
-        userInterator.isLogged(overviewFragment.getContext(), this);
+    @Override
+    public void isLogged() {
+        overviewInterator.isLogged();
     }
 
+    @Override
     public void goHomeScreen() {
-        overviewFragment.goHomeScreen();
+        view.goHomeScreen();
     }
 }
