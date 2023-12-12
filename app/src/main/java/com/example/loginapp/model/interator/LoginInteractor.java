@@ -25,20 +25,29 @@ public class LoginInteractor {
         if (email.equals("") || password.equals("")) {
             listener.onLoginMessage("Please enter complete information");
         } else {
-            List<Account> accounts = AppSharedPreferences.getInstance(context).getAccounts();
-            if (accounts == null) {
-                listener.onLoginMessage("Account does not exist");
+            if(checkLogin(context, email, password)) {
+                AppSharedPreferences.getInstance(context).setLoginStatus(true);
+                listener.goHomeScreen();
+                listener.onLoginMessage("Logged in successfully");
             } else {
-                for (Account account : accounts) {
-                    if (account.getEmail().equals(email) && account.getPassword().equals(password)) {
-                        AppSharedPreferences.getInstance(context).setLoginStatus(true);
-                        listener.goHomeScreen();
-                        listener.onLoginMessage("Logged in successfully");
-                    } else {
-                        listener.onLoginMessage("Account information or password is incorrect");
-                    }
+                listener.onLoginMessage("Account information or password is incorrect");
+            }
+        }
+    }
+
+    private boolean checkLogin(Context context, String email, String password) {
+        List<Account> accounts = AppSharedPreferences.getInstance(context).getAccounts();
+        if (accounts == null) {
+            return false;
+        } else {
+            for (Account account : accounts) {
+                if (account.getEmail().equals(email) && account.getPassword().equals(password)) {
+                    break;
+                } else {
+                    return false;
                 }
             }
         }
+        return true;
     }
 }
