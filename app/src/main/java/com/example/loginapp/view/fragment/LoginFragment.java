@@ -41,9 +41,17 @@ public class LoginFragment extends Fragment implements LoginView {
         hideKeyboardFrom(this.requireContext(), view);
         loginPresenter = new LoginPresenter(this);
 
-        assert getArguments() != null;
-        binding.emailInput.setText(getArguments().getString("email"));
-        binding.passwordInput.setText(getArguments().getString("password"));
+        if (getArguments() != null) {
+            String email = getArguments().getString("email");
+            String password = getArguments().getString("password");
+            binding.emailInput.setText(email);
+            binding.passwordInput.setText(password);
+            assert email != null;
+            assert password != null;
+            if (!email.equals("") && !password.equals("")) {
+                onEmailClick();
+            }
+        }
 
         view.setOnTouchListener(new View.OnTouchListener() {
             @Override
