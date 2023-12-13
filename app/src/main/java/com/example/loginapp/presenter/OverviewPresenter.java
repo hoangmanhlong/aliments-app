@@ -12,11 +12,10 @@ public class OverviewPresenter implements OverviewListener {
     public OverviewPresenter(OverviewView view) {
         this.view = view;
         overviewInterator = new OverviewInterator(this);
-
+        isLogged();
     }
 
-    @Override
-    public void isLogged() {
+    private void isLogged() {
         overviewInterator.isLogged();
     }
 

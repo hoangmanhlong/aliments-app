@@ -42,12 +42,10 @@ public class LoginInteractor {
         } else {
             for (Account account : accounts) {
                 if (account.getEmail().equals(email) && account.getPassword().equals(password)) {
-                    break;
-                } else {
-                    return false;
+                    return true;
                 }
             }
         }
-        return true;
+        return false;
     }
 }

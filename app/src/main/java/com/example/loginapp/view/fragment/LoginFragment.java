@@ -2,7 +2,6 @@ package com.example.loginapp.view.fragment;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -11,8 +10,6 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -22,29 +19,9 @@ import com.example.loginapp.R;
 import com.example.loginapp.databinding.FragmentLoginBinding;
 import com.example.loginapp.presenter.LoginPresenter;
 
-import java.util.Objects;
-
-public class LoginFragment extends Fragment {
+public class LoginFragment extends Fragment implements LoginView {
     private FragmentLoginBinding binding;
     private LoginPresenter loginPresenter;
-
-//    ActivityResultLauncher<Intent> mGetContent = registerForActivityResult(
-//        new ActivityResultContracts.StartActivityForResult(),
-//        result -> {
-//            Log.d(this.toString(), String.valueOf(result.getResultCode()));
-//            if (result.getResultCode() == RESULT_OK) {
-//                Intent intent = result.getData();
-//                if (intent != null) {
-//                    String email = intent.getStringExtra("email");
-//                    String password = intent.getStringExtra("password");
-//                    binding.emailInput.setText(email);
-//                    binding.passwordInput.setText(password);
-//                    Log.d(this.toString(), email.toString());
-//                    Log.d(this.toString(), password.toString());
-//                }
-//            }
-//        }
-//    );
 
     @Nullable
     @Override
@@ -94,15 +71,7 @@ public class LoginFragment extends Fragment {
     public void onLogin() {
         String email = binding.emailInput.getText().toString();
         String password = binding.passwordInput.getText().toString();
-        loginPresenter.putUserInput(email, password);
-    }
-
-    public void showSuccess(String message) {
-        Toast.makeText(this.getContext(), message, Toast.LENGTH_SHORT).show();
-    }
-
-    public void showFail(String message) {
-        Toast.makeText(this.getContext(), message, Toast.LENGTH_SHORT).show();
+        loginPresenter.login(email, password);
     }
 
     public void onCreateAccountBtn() {
@@ -115,8 +84,14 @@ public class LoginFragment extends Fragment {
             .navigate(R.id.action_loginFragment_to_homeFragment);
     }
 
+    @Override
+    public void onLoginMessage(String message) {
+        Toast.makeText(this.getContext(), message, Toast.LENGTH_SHORT).show();
+    }
+
     public static void hideKeyboardFrom(Context context, View view) {
-        InputMethodManager imm = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        InputMethodManager imm =
+            (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 }

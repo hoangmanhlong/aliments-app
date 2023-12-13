@@ -32,13 +32,13 @@ public class RegisterInterator {
             listener.onRegisterMessage("Please enter complete information");
         } else if (!isValidEmail(email)) {
             listener.onRegisterMessage("Email format is wrong, Please re-enter");
-        } else if (!isPasswordValid(password)) {
+        } else if (!emailIsExists(context, email)) {
+            listener.onRegisterMessage("Email already exists");
+        }else if (!isPasswordValid(password)) {
             listener.onRegisterMessage("Password must be more than 6 characters");
         } else if (!password.equals(confirmPassword)) {
             listener.onRegisterMessage("Passwords are not duplicates");
-        } else if (!emailIsExists(context, email)) {
-            listener.onRegisterMessage("Email already exists");
-        } else {
+        }  else {
             try {
                 AppSharedPreferences.getInstance(context).saveUserAccount(email, password);
                 listener.goLoginScreen();
@@ -48,8 +48,6 @@ public class RegisterInterator {
             }
         }
     }
-
-
 
     private boolean isValidEmail(String email) {
         // Biểu thức chính quy để kiểm tra địa chỉ email
@@ -69,7 +67,6 @@ public class RegisterInterator {
     }
 
     private boolean isPasswordValid(String password) {
-        // Kiểm tra xem mật khẩu có ít nhất 6 ký tự không
         return password.length() >= 6;
     }
 
