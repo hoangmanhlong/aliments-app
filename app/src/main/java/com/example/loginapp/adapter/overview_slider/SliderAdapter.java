@@ -1,10 +1,8 @@
-package com.example.loginapp.adapter;
+package com.example.loginapp.adapter.overview_slider;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
-import com.example.loginapp.data.DataSource;
-import com.example.loginapp.databinding.LayoutItemSliderviewBinding;
 import com.example.loginapp.databinding.LayoutItemSliderviewBinding;
 import com.smarteist.autoimageslider.SliderViewAdapter;
 
@@ -12,7 +10,7 @@ import java.util.List;
 
 public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderAdapterViewHolder> {
 
-    private final List<SliderItem> mSliderItems = DataSource.sliderItems;
+    private final List<SliderItem> mSliderItems = SliderDataSource.sliderItems;
 
     @Override
     public SliderAdapterViewHolder onCreateViewHolder(ViewGroup parent) {

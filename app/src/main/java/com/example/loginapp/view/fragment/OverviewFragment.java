@@ -1,5 +1,6 @@
 package com.example.loginapp.view.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,12 +11,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.loginapp.R;
-import com.example.loginapp.adapter.SliderAdapter;
+import com.example.loginapp.adapter.overview_slider.SliderAdapter;
 import com.example.loginapp.databinding.FragmentOverviewBinding;
 import com.example.loginapp.presenter.OverviewPresenter;
+import com.example.loginapp.view.activities.LoginActivity;
+import com.example.loginapp.view.activities.MainActivity;
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
 import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderView;
@@ -59,8 +61,9 @@ public class OverviewFragment extends Fragment implements OverviewView {
 
     @Override
     public void goHomeScreen() {
-        Navigation.findNavController(binding.getRoot())
-            .navigate(R.id.action_overviewFragment_to_homeFragment);
+        startActivity(new Intent(getContext(), MainActivity.class));
+        getActivity().finish();
+
     }
 
     public void goLoginScreen() {

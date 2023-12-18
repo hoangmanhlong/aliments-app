@@ -1,4 +1,4 @@
-package com.example.loginapp.adapter;
+package com.example.loginapp.adapter.overview_slider;
 
 import androidx.annotation.DrawableRes;
 import androidx.annotation.StringRes;

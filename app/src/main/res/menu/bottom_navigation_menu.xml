@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/homeFragment"
+        android:icon="@drawable/ic_home"
+        android:enabled="true"
+        android:title="@null" />
+    <item android:id="@+id/searchProductFragment"
+        android:icon="@drawable/orion_search_find"
+        android:enabled="true"
+        android:title="@null" />
+    <item android:id="@+id/cartFragment"
+        android:icon="@drawable/shopping_cart"
+        android:enabled="true"
+        android:title="@null" />
+    <item android:id="@+id/favoriteProductFragment"
+        android:icon="@drawable/favorite"
+        android:enabled="true"
+        android:title="@null" />
+    <item android:id="@+id/userProfileFragment"
+        android:icon="@drawable/single_01"
+        android:enabled="true"
+        android:title="@null" />
+</menu>

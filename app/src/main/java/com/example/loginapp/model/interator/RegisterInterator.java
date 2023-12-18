@@ -27,6 +27,9 @@ public class RegisterInterator {
         String password,
         String confirmPassword
     ) {
+        email = email.trim();
+        password = password.trim();
+        confirmPassword = confirmPassword.trim();
         Context context = App.getInstances().getApplicationContext().getApplicationContext();
         if (email.equals("") || password.equals("") || confirmPassword.equals("")) {
             listener.onRegisterMessage("Please enter complete information");

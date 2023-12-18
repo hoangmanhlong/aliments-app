@@ -30,6 +30,8 @@
             android:name=".view.activities.MainActivity"
             android:theme="@style/Base.Theme.LoginApp"
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
+
+        <activity android:name=".view.activities.LoginActivity" />
     </application>
 
 </manifest>

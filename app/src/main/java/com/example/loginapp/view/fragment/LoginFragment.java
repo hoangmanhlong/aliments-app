@@ -2,6 +2,7 @@ package com.example.loginapp.view.fragment;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -13,11 +14,16 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
 import com.example.loginapp.R;
 import com.example.loginapp.databinding.FragmentLoginBinding;
 import com.example.loginapp.presenter.LoginPresenter;
+import com.example.loginapp.view.activities.MainActivity;
+import com.example.loginapp.view.state.LoginButtonObserver;
+
+import java.util.Objects;
 
 public class LoginFragment extends Fragment implements LoginView {
     private FragmentLoginBinding binding;
@@ -60,6 +66,18 @@ public class LoginFragment extends Fragment implements LoginView {
                 return false;
             }
         });
+
+        binding.emailInput.addTextChangedListener(new LoginButtonObserver(
+            binding.loginEmailBtn,
+            binding.emailInput,
+            binding.passwordInput
+        ));
+
+        binding.passwordInput.addTextChangedListener(new LoginButtonObserver(
+            binding.loginEmailBtn,
+            binding.emailInput,
+            binding.passwordInput
+        ));
     }
 
     public void onNumberPhoneBtn() {
@@ -88,8 +106,8 @@ public class LoginFragment extends Fragment implements LoginView {
     }
 
     public void goHomeScreen() {
-        Navigation.findNavController(binding.getRoot())
-            .navigate(R.id.action_loginFragment_to_homeFragment);
+        startActivity(new Intent(getActivity(), MainActivity.class));
+        getActivity().finish();
     }
 
     @Override

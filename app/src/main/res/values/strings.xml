@@ -15,4 +15,6 @@
     <string name="phone_number">Phone number</string>
     <string name="email">Email</string>
     <string name="register">Register</string>
+    <string name="price_format">%s$</string>
+    <string name="brand">Brand: %s</string>
 </resources>

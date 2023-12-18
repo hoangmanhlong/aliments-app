@@ -18,6 +18,7 @@ import androidx.navigation.Navigation;
 import com.example.loginapp.R;
 import com.example.loginapp.databinding.FragmentRegisterBinding;
 import com.example.loginapp.presenter.RegisterPresenter;
+import com.example.loginapp.view.state.RegisterButtonObserver;
 
 public class RegisterFragment extends Fragment implements RegisterView {
     private FragmentRegisterBinding binding;
@@ -46,6 +47,15 @@ public class RegisterFragment extends Fragment implements RegisterView {
                 return false;
             }
         });
+
+        // Observer register button
+        binding.emailInput.addTextChangedListener(new RegisterButtonObserver(binding.registerButton,
+            binding.emailInput, binding.passwordInput, binding.confirmPasswordInput));
+        binding.passwordInput.addTextChangedListener(new RegisterButtonObserver(binding.registerButton,
+            binding.emailInput, binding.passwordInput, binding.confirmPasswordInput));
+        binding.confirmPasswordInput.addTextChangedListener(new RegisterButtonObserver(binding.registerButton,
+            binding.emailInput, binding.passwordInput, binding.confirmPasswordInput));
+
     }
 
     @Override

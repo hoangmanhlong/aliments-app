@@ -4,4 +4,5 @@ public interface LoginView {
     void goHomeScreen();
 
     void onLoginMessage(String message);
+
 }

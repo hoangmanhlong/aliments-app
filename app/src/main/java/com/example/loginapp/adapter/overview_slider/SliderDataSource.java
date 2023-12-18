@@ -1,13 +1,12 @@
-package com.example.loginapp.data;
+package com.example.loginapp.adapter.overview_slider;
 
 import com.example.loginapp.R;
-import com.example.loginapp.adapter.SliderItem;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public final class DataSource {
+public final class SliderDataSource {
     public static final List<SliderItem> sliderItems = new ArrayList<>(
         Arrays.asList(
             new SliderItem(R.drawable.option1, R.string.best_prices, R.string.find_your_f),
