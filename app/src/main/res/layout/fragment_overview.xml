@@ -5,7 +5,7 @@
 
         <variable
             name="overviewFragment"
-            type="com.example.loginapp.view.fragment.OverviewFragment" />
+            type="com.example.loginapp.view.fragment.overview.OverviewFragment" />
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -33,45 +33,34 @@
             app:sliderScrollTimeInSec="1"
             app:sliderStartAutoCycle="true" />
 
-
         <LinearLayout
-            android:id="@+id/group_action"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/rectangle_9"
             android:gravity="center"
             android:orientation="vertical"
-            android:paddingHorizontal="@dimen/_20sdp"
-            android:paddingVertical="@dimen/_20sdp">
+            android:paddingVertical="@dimen/_30sdp"
+            android:paddingHorizontal="@dimen/_16sdp">
 
-            <LinearLayout
+            <Button
+                android:id="@+id/loginBtn"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="vertical">
+                android:layout_height="@dimen/_50sdp"
+                android:layout_marginVertical="@dimen/_8sdp"
+                android:onClick="@{() -> overviewFragment.goLoginScreen()}"
+                android:text="@string/login"
+                android:textAllCaps="false" />
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/loginBtn"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/_25sdp"
-                    android:background="@drawable/login_button_background"
-                    android:onClick="@{() -> overviewFragment.goLoginScreen()}"
-                    android:text="@string/login"
-                    android:textAllCaps="false"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_12ssp" />
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/create_account_button_background"
-                    android:onClick="@{() -> overviewFragment.onCreateAccountBtn()}"
-                    android:text="@string/create_account"
-                    android:textAllCaps="false"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/_12ssp" />
-            </LinearLayout>
+            <Button
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_marginVertical="@dimen/_8sdp"
+                android:onClick="@{() -> overviewFragment.onCreateAccountBtn()}"
+                android:text="@string/create_account"
+                android:textAllCaps="false"
+                android:textSize="@dimen/_12ssp" />
         </LinearLayout>
     </LinearLayout>
+
 </layout>

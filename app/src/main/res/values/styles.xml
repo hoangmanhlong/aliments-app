@@ -30,6 +30,16 @@
 <!--        <item name="cornerFamilyBottomRight">rounded</item>-->
     </style>
 
+    <style name="circleImageView" parent="">
+        <item name="cornerSize">50%</item>
+    </style>
 
+    <style name="discount_image">
+        <item name="cornerSize">@dimen/_10sdp</item>
+    </style>
+
+    <style name="spinerStyle">
+        <item name="fontFamily">@font/overpass_regular</item>
+    </style>
 
 </resources>

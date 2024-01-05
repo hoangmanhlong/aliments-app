@@ -1,6 +1,6 @@
 package com.example.loginapp.model.listener;
 
-import com.example.loginapp.data.remote.dto.Product;
+import com.example.loginapp.data.remote.api.dto.Product;
 
 import java.util.List;
 
@@ -10,4 +10,6 @@ public interface SearchListener {
     void onLoadError(String message);
 
     void showProcessBar(Boolean show);
+
+    void onListEmpty(Boolean show);
 }

@@ -2,10 +2,12 @@ package com.example.loginapp.model.interator;
 
 import android.util.Log;
 
-import com.example.loginapp.data.remote.AppApi;
-import com.example.loginapp.data.remote.AppApiService;
-import com.example.loginapp.data.remote.dto.ProductResponse;
+import com.example.loginapp.data.remote.api.AppApiService;
+import com.example.loginapp.data.remote.api.dto.Product;
+import com.example.loginapp.data.remote.api.dto.ProductResponse;
 import com.example.loginapp.model.listener.SearchListener;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -27,8 +29,16 @@ public class SearchProductInterator {
                     ProductResponse productResponse = response.body();
                     if (productResponse != null) {
                         Log.d(this.toString(), productResponse.getProducts().toString());
-                        listener.onLoadProducts(productResponse.getProducts());
-                        listener.showProcessBar(false);
+                        List<Product> products = productResponse.getProducts();
+                        if (products.isEmpty()) {
+                            listener.showProcessBar(false);
+                            listener.onListEmpty(true);
+                        } else {
+                            listener.onListEmpty(false);
+                            listener.onLoadProducts(products);
+                            listener.showProcessBar(false);
+                        }
+
                     } else {
                         listener.onLoadError("Load data fail");
                     }

@@ -1,26 +1,27 @@
 package com.example.loginapp.view.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.NavController;
-import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.loginapp.R;
-import com.example.loginapp.databinding.ActivityLoginBinding;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        com.example.loginapp.databinding.ActivityLoginBinding binding =
-            ActivityLoginBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-
-        NavHostFragment navHostFragment =
-            (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.login_container);
-        assert navHostFragment != null;
-        NavController navController = navHostFragment.getNavController();
+        Log.d("Init", "1");
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (currentUser != null){
+            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+            this.finish();
+        }
+        setContentView(R.layout.activity_login);
     }
+
 }

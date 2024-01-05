@@ -1,51 +1,47 @@
 package com.example.loginapp.model.interator;
 
-import android.content.Context;
+import android.app.Activity;
 
-import com.example.loginapp.App;
-import com.example.loginapp.data.AppSharedPreferences;
-import com.example.loginapp.model.entity.Account;
+import androidx.annotation.NonNull;
+
 import com.example.loginapp.model.listener.LoginListener;
-
-import java.util.List;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginInteractor {
+
+    private FirebaseAuth mAuth;
+
 
     private LoginListener listener;
 
     public LoginInteractor(LoginListener listener) {
         this.listener = listener;
+        mAuth = FirebaseAuth.getInstance();
     }
 
     public void login(
         String email,
-        String password
+        String password,
+        Activity activity
     ) {
-        Context context = App.getInstances().getApplicationContext().getApplicationContext();
         if (email.equals("") || password.equals("")) {
             listener.onLoginMessage("Please enter complete information");
         } else {
-            if(checkLogin(context, email, password)) {
-                AppSharedPreferences.getInstance(context).setLoginStatus(true);
-                listener.goHomeScreen();
-                listener.onLoginMessage("Logged in successfully");
-            } else {
-                listener.onLoginMessage("Account information or password is incorrect");
-            }
+            mAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(activity, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            listener.goHomeScreen();
+                            listener.onLoginMessage("Logged in successfully");
+                        } else {
+                            listener.onLoginMessage("Account information or password is incorrect");
+                        }
+                    }
+                });
         }
-    }
-
-    private boolean checkLogin(Context context, String email, String password) {
-        List<Account> accounts = AppSharedPreferences.getInstance(context).getAccounts();
-        if (accounts == null) {
-            return false;
-        } else {
-            for (Account account : accounts) {
-                if (account.getEmail().equals(email) && account.getPassword().equals(password)) {
-                    return true;
-                }
-            }
-        }
-        return false;
     }
 }

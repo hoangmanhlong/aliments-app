@@ -4,4 +4,6 @@ public interface RegisterListener {
     void goLoginScreen();
 
     void onRegisterMessage(String message);
+
+    void onShowProcessBar(Boolean show);
 }

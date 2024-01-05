@@ -1,55 +1,79 @@
 package com.example.loginapp.model.interator;
 
-import android.content.Context;
-import android.util.Log;
+import android.app.Activity;
 
-import com.example.loginapp.App;
-import com.example.loginapp.data.AppSharedPreferences;
-import com.example.loginapp.model.entity.Account;
+import androidx.annotation.NonNull;
+
+import com.example.loginapp.model.entity.UserData;
 import com.example.loginapp.model.listener.RegisterListener;
-import com.example.loginapp.presenter.HomePresenter;
-import com.example.loginapp.presenter.RegisterPresenter;
+import com.example.loginapp.data.remote.service.Constant;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.List;
-import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class RegisterInterator {
+
+    private final FirebaseAuth mAuth = FirebaseAuth.getInstance();
+
+    private final DatabaseReference userRef =
+        FirebaseDatabase.getInstance().getReference().child(Constant.USER_REF);
+
     private RegisterListener listener;
 
     public RegisterInterator(RegisterListener listener) {
         this.listener = listener;
+
     }
 
     public void register(
         String email,
         String password,
+        Activity activity,
         String confirmPassword
     ) {
-        email = email.trim();
-        password = password.trim();
-        confirmPassword = confirmPassword.trim();
-        Context context = App.getInstances().getApplicationContext().getApplicationContext();
+        listener.onShowProcessBar(true);
         if (email.equals("") || password.equals("") || confirmPassword.equals("")) {
             listener.onRegisterMessage("Please enter complete information");
+            listener.onShowProcessBar(false);
         } else if (!isValidEmail(email)) {
             listener.onRegisterMessage("Email format is wrong, Please re-enter");
-        } else if (!emailIsExists(context, email)) {
-            listener.onRegisterMessage("Email already exists");
-        }else if (!isPasswordValid(password)) {
+            listener.onShowProcessBar(false);
+        } else if (!isPasswordValid(password)) {
             listener.onRegisterMessage("Password must be more than 6 characters");
+            listener.onShowProcessBar(false);
         } else if (!password.equals(confirmPassword)) {
             listener.onRegisterMessage("Passwords are not duplicates");
-        }  else {
-            try {
-                AppSharedPreferences.getInstance(context).saveUserAccount(email, password);
-                listener.goLoginScreen();
-                listener.onRegisterMessage("Sign Up Success");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            listener.onShowProcessBar(false);
+        } else {
+            mAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(activity, task -> {
+                        if (task.isSuccessful()) {
+                            String uid = mAuth.getUid();
+                            UserData userData = new UserData(uid, email, password);
+                            userRef.child(uid).setValue(userData);
+                            // Sign in success, update UI with the signed-in user's information
+                            listener.goLoginScreen();
+                            listener.onRegisterMessage("Sign Up Success");
+                            listener.onShowProcessBar(false);
+                        } else {
+                            task.getException().getMessage();
+                            listener.onRegisterMessage("Authentication failed.");
+                            listener.onShowProcessBar(false);
+                        }
+                    }
+                ).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+
+                    }
+                });
         }
+
     }
 
     private boolean isValidEmail(String email) {
@@ -73,14 +97,4 @@ public class RegisterInterator {
         return password.length() >= 6;
     }
 
-    private boolean emailIsExists(Context context, String email) {
-        List<Account> accounts = AppSharedPreferences.getInstance(context).getAccounts();
-        if (accounts == null)
-            return true;
-        else
-            for (Account account : accounts)
-                if (Objects.equals(account.getEmail(), email))
-                    return false;
-        return true;
-    }
 }

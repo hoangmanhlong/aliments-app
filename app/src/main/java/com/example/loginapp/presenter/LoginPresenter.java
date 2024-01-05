@@ -1,8 +1,10 @@
 package com.example.loginapp.presenter;
 
+import android.app.Activity;
+
 import com.example.loginapp.model.interator.LoginInteractor;
 import com.example.loginapp.model.listener.LoginListener;
-import com.example.loginapp.view.fragment.LoginView;
+import com.example.loginapp.view.fragment.login.LoginView;
 
 public class LoginPresenter implements LoginListener {
     private final LoginView view;
@@ -18,12 +20,17 @@ public class LoginPresenter implements LoginListener {
         view.goHomeScreen();
     }
 
-    public void login(String email, String password) {
-        loginInteractor.login(email, password);
+    public void login(String email, String password, Activity activity) {
+        loginInteractor.login(email, password, activity);
     }
 
     @Override
     public void onLoginMessage(String message) {
         view.onLoginMessage(message);
+    }
+
+    @Override
+    public void onShowProcessBar(Boolean show) {
+
     }
 }

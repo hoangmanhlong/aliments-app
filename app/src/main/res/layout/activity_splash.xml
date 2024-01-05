@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/iphone_13_p">
+    android:background="#152B36">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -17,54 +17,22 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:layout_width="@dimen/_79sdp"
-            android:layout_height="@dimen/_79sdp"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_100sdp"
             android:contentDescription="@null"
-            android:src="@drawable/foreground" />
+            android:src="@drawable/logo_app" />
 
         <TextView
             android:id="@+id/aliments"
+            android:fontFamily="@font/acme_regular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="top"
-            android:text="@string/aliments"
+            android:text="@string/app_name"
             android:textColor="@color/white"
-            android:textSize="@dimen/_35sdp"
+            android:textSize="@dimen/_30sdp"
             android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/food_delive"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_16sdp" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="50dp"
-        android:gravity="center"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <ImageView
-            android:layout_width="@dimen/_21sdp"
-            android:layout_height="@dimen/_10sdp"
-            android:src="@drawable/loopr" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/loopr"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_12sdp"
-            android:textStyle="bold" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -1,20 +1,21 @@
 package com.example.loginapp.presenter;
 
-import com.example.loginapp.data.remote.dto.Product;
+import com.example.loginapp.data.remote.api.dto.Product;
+import com.example.loginapp.model.entity.UserData;
 import com.example.loginapp.model.interator.HomeInterator;
 import com.example.loginapp.model.listener.HomeListener;
-import com.example.loginapp.view.fragment.HomeView;
+import com.example.loginapp.view.fragment.home.HomeView;
 
 import java.util.List;
 
 public class HomePresenter implements HomeListener {
-    private HomeView view;
-    private HomeInterator interator;
+    private final HomeView view;
+    private final HomeInterator interator;
 
     public HomePresenter(HomeView view) {
         this.view = view;
         interator = new HomeInterator(this);
-
+        interator.getUserData();
         interator.getCategories();
     }
 
@@ -22,22 +23,13 @@ public class HomePresenter implements HomeListener {
         interator.getListProductFromNetwork();
     }
 
-    public void logout() {
-        interator.logout();
-    }
-
-    @Override
-    public void goOverviewScreen() {
-        view.goOverviewScreen();
-    }
-
-    @Override
-    public void onLogoutMessage(String message) {
-        view.onLogoutMessage(message);
-    }
-
     public void getProductOfCategory(String category) {
         interator.getProductOfCategory(category);
+    }
+
+    @Override
+    public void getUserData(UserData userData) {
+        view.getUserData(userData);
     }
 
     @Override

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Aliments</string>
+    <string name="app_name">Smarteshop</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="aliments">Aliments</string>
     <string name="food_delive">Food Delivery Services</string>
@@ -17,4 +17,6 @@
     <string name="register">Register</string>
     <string name="price_format">%s$</string>
     <string name="brand">Brand: %s</string>
+    <string name="welcome">Hi %s !</string>
+    <string name="searchbar_hint">Search a product</string>
 </resources>

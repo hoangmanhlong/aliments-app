@@ -1,12 +1,12 @@
 package com.example.loginapp.model.listener;
 
-import com.example.loginapp.data.remote.dto.Product;
+import com.example.loginapp.data.remote.api.dto.Product;
+import com.example.loginapp.model.entity.UserData;
 
 import java.util.List;
 
 public interface HomeListener {
-    void goOverviewScreen();
-    void onLogoutMessage(String message);
+    void getUserData(UserData userData);
 
     void onLoadProducts(List<Product> products);
 

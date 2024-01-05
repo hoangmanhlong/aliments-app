@@ -4,29 +4,45 @@
     <data>
 
         <variable
+            name="userData"
+            type="com.example.loginapp.model.entity.UserData" />
+
+        <variable
             name="homeFragment"
-            type="com.example.loginapp.view.fragment.HomeFragment" />
+            type="com.example.loginapp.view.fragment.home.HomeFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/linear_process"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_10sdp"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
             android:id="@+id/nestedScrollView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/white"
+            android:background="@color/design_default_color_background"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingHorizontal="@dimen/_16sdp"
+                android:paddingTop="@dimen/_8sdp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -37,49 +53,44 @@
                         android:id="@+id/user_view"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingHorizontal="@dimen/_12sdp"
-                        android:paddingVertical="@dimen/_8sdp"
+                        android:layout_marginBottom="@dimen/_8sdp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
                         <TextView
-                            android:id="@+id/hello"
+                            android:id="@+id/hello_user"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Hi, Long !"
+                            android:fontFamily="@font/montserrat_bold"
+                            android:text="@{@string/welcome(userData.username)}"
                             android:textSize="@dimen/_16ssp"
                             android:textStyle="bold"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
+                            android:id="@+id/welcome_title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/montserrat_regular"
                             android:paddingTop="@dimen/_2sdp"
                             android:text="Welcome back"
-                            android:textSize="@dimen/_14ssp"
+                            android:textSize="@dimen/_12ssp"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/hello" />
+                            app:layout_constraintTop_toBottomOf="@id/hello_user" />
 
-                        <androidx.cardview.widget.CardView
+                        <com.google.android.material.imageview.ShapeableImageView
                             android:layout_width="@dimen/_40sdp"
                             android:layout_height="@dimen/_40sdp"
-                            app:cardCornerRadius="@dimen/_20sdp"
+                            android:adjustViewBounds="true"
+                            android:scaleType="centerCrop"
+                            imgUrl="@{userData.photoUrl}"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="parent">
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:shapeAppearance="@style/circleImageView" />
 
-                            <ImageView
-
-                                android:layout_width="@dimen/_40sdp"
-                                android:layout_height="@dimen/_40sdp"
-                                android:contentDescription="@null"
-                                android:scaleType="centerCrop"
-                                android:src="@drawable/dog"
-
-                                />
-                        </androidx.cardview.widget.CardView>
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -87,7 +98,7 @@
                         android:id="@+id/discount_sliderView"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_110sdp"
-                        android:layout_margin="@dimen/_8sdp"
+                        android:clipToPadding="false"
                         app:sliderAnimationDuration="600"
                         app:sliderAutoCycleDirection="back_and_forth"
                         app:sliderAutoCycleEnabled="true"
@@ -105,7 +116,6 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="@dimen/_12sdp"
                         android:orientation="horizontal"
                         android:paddingVertical="@dimen/_4sdp">
 
@@ -113,6 +123,7 @@
                             android:id="@+id/filter"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/overpass_regular"
                             android:text="Category:"
                             android:textSize="@dimen/_14ssp"
                             android:textStyle="bold"
@@ -122,36 +133,9 @@
                         <Spinner
                             android:id="@+id/categories"
                             android:layout_width="wrap_content"
-                            android:layout_height="@dimen/_30sdp" />
+                            android:layout_height="@dimen/_40sdp"
+                            android:theme="@style/spinerStyle"/>
                     </LinearLayout>
-
-
-                    <LinearLayout
-                        android:id="@+id/recommended"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="@dimen/_12sdp"
-                        android:orientation="horizontal">
-
-                        <com.google.android.material.chip.Chip
-                            android:id="@+id/chip_1"
-                            style="@style/Widget.Material3.Chip.Filter"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:checked="true"
-                            android:clickable="false"
-                            android:text="Recommended for you"
-                            app:checkedIcon="@drawable/ic_check"
-                            app:ensureMinTouchTargetSize="true" />
-
-                    </LinearLayout>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1">
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </LinearLayout>
 
@@ -160,11 +144,11 @@
                     android:layout_height="match_parent">
 
                     <ProgressBar
-                        android:layout_marginTop="@dimen/_100sdp"
                         android:id="@+id/processBar"
-                        android:visibility="gone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_100sdp"
+                        android:visibility="gone"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -174,12 +158,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:clipToPadding="false"
-                        android:padding="@dimen/_8sdp"
                         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                         app:layout_constraintTop_toTopOf="parent"
                         app:spanCount="2"
                         tools:listitem="@layout/layout_product_item" />
-
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -187,20 +169,20 @@
 
 
         </androidx.core.widget.NestedScrollView>
+
         <Button
-            android:layout_width="@dimen/_40sdp"
-            android:layout_height="@dimen/_40sdp"
             android:id="@+id/button_scroll"
             style="?attr/materialIconButtonStyle"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_30sdp"
+            android:backgroundTint="@color/gray"
             android:drawableTop="@drawable/ic_top"
-            android:visibility="gone"
-            android:backgroundTint="@color/design_default_color_secondary_variant"
-            android:layout_marginBottom="@dimen/_50sdp"
-            app:layout_constraintEnd_toEndOf="parent"
             android:gravity="center"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_margin="@dimen/_10sdp"/>
+            app:layout_constraintEnd_toEndOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 </layout>
