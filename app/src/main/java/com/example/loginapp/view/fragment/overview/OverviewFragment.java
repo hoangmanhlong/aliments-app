@@ -45,7 +45,6 @@ public class OverviewFragment extends Fragment {
         sliderView.setAutoCycleDirection(SliderView.AUTO_CYCLE_DIRECTION_BACK_AND_FORTH);
         sliderView.setScrollTimeInSec(4);
         sliderView.startAutoCycle();
-
     }
 
     public void goLoginScreen() {

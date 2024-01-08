@@ -153,7 +153,7 @@ public class HomeFragment extends Fragment implements HomeView {
 
     @Override
     public void onLoadError(String message) {
-        Toast.makeText(this.getContext(), message, Toast.LENGTH_SHORT).show();
+        Toast.makeText(App.getApplication(), message, Toast.LENGTH_SHORT).show();
     }
 
     @Override

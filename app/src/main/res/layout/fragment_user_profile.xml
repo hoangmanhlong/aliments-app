@@ -21,28 +21,28 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             tools:context=".view.fragment.cart.CartFragment">
 
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                app:layout_constraintTop_toTopOf="parent">
+                android:layout_height="?attr/actionBarSize">
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat_bold"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:fontFamily="@font/montserrat_regular"
                     android:text="My account"
-                    android:textAlignment="center"
-                    android:textSize="@dimen/_18sdp"
+                    android:textColor="@color/black_100"
+                    android:textSize="@dimen/_14sdp"
                     android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
-            </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -215,8 +215,7 @@
                     android:fontFamily="@font/dm_sans_36pt_regular"
                     android:text="My order"
                     android:textAlignment="viewStart"
-                    android:textColor="@color/design_dark_default_color_on_secondary"
-                    android:textSize="@dimen/_12sdp"
+                    android:textColor="@color/black"                    android:textSize="@dimen/_12sdp"
                     android:textStyle="bold" />
 
                 <com.google.android.material.divider.MaterialDivider
@@ -235,7 +234,7 @@
                     android:fontFamily="@font/dm_sans_36pt_regular"
                     android:text="Voucher"
                     android:textAlignment="viewStart"
-                    android:textColor="@color/design_dark_default_color_on_secondary"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/_12sdp"
                     android:textStyle="bold" />
 
@@ -254,8 +253,7 @@
                     android:fontFamily="@font/dm_sans_36pt_regular"
                     android:text="Shipping address"
                     android:textAlignment="viewStart"
-                    android:textColor="@color/design_dark_default_color_on_secondary"
-                    android:textSize="@dimen/_12sdp"
+                    android:textColor="@color/black"                    android:textSize="@dimen/_12sdp"
                     android:textStyle="bold" />
 
                 <com.google.android.material.divider.MaterialDivider
@@ -273,8 +271,7 @@
                     android:fontFamily="@font/dm_sans_36pt_regular"
                     android:text="FAQ"
                     android:textAlignment="viewStart"
-                    android:textColor="@color/design_dark_default_color_on_secondary"
-                    android:textSize="@dimen/_12sdp"
+                    android:textColor="@color/black"                    android:textSize="@dimen/_12sdp"
                     android:textStyle="bold" />
 
                 <com.google.android.material.divider.MaterialDivider
@@ -292,8 +289,7 @@
                     android:fontFamily="@font/dm_sans_36pt_regular"
                     android:text="Customer service"
                     android:textAlignment="viewStart"
-                    android:textColor="@color/design_dark_default_color_on_secondary"
-                    android:textSize="@dimen/_12sdp"
+                    android:textColor="@color/black"                    android:textSize="@dimen/_12sdp"
                     android:textStyle="bold" />
 
                 <com.google.android.material.divider.MaterialDivider

@@ -23,6 +23,9 @@
         <action
             android:id="@+id/action_productFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_productFragment_to_checkoutInfoFragment"
+            app:destination="@id/checkoutInfoFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchProductFragment"
@@ -64,4 +67,34 @@
         android:name="com.example.loginapp.view.fragment.edit_user_profile.EditUserInformationFragment"
         android:label="fragment_edit_user_information"
         tools:layout="@layout/fragment_edit_user_information" />
+    <fragment
+        android:id="@+id/checkoutInfoFragment"
+        android:name="com.example.loginapp.view.fragment.checkout.CheckoutInfoFragment"
+        android:label="CheckoutInfoFragment" >
+        <action
+            android:id="@+id/action_checkoutInfoFragment_to_paymentOptionFragment"
+            app:destination="@id/paymentOptionFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/modalBottomSheetFragment"
+        android:name="com.example.loginapp.view.fragment.bottom_sheet.ModalBottomSheetFragment"
+        android:label="ModalBottomSheetFragment" />
+    <fragment
+        android:id="@+id/paymentOptionFragment"
+        android:name="com.example.loginapp.view.fragment.checkout.PaymentOptionFragment"
+        android:label="PaymentOptionFragment" >
+        <action
+            android:id="@+id/action_paymentOptionFragment_to_orderSuccessFragment"
+            app:destination="@id/orderSuccessFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/orderSuccessFragment"
+        android:name="com.example.loginapp.view.fragment.checkout.OrderSuccessFragment"
+        android:label="OrderSuccessFragment" >
+        <action
+            android:id="@+id/action_orderSuccessFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

@@ -8,6 +8,10 @@
     <color name="gray_300">#F0F0F0</color>
     <color name="gray_500">#9D9EA3</color>
     <color name="gray_600">#e5e5e5</color>
+    <color name="gray_700">#9D9EA3</color>
+    <color name="gray_800">#AAAAAA</color>
+    <color name="gray_1000">#F7F8FB</color>
+    <color name="black_100">#202020</color>
     <color name="seed">#FF800B</color>
     <color name="md_theme_light_primary">#974800</color>
     <color name="md_theme_light_onPrimary">#FFFFFF</color>

@@ -63,7 +63,7 @@ public class ProductFragment extends Fragment implements ProductView {
         Bundle bundle = new Bundle();
         bundle.putInt(PRODUCT_KEY, tempProduct.getId());
         modalBottomSheetFragment.setArguments(bundle);
-        modalBottomSheetFragment.show(requireActivity().getSupportFragmentManager(), ModalBottomSheetFragment.TAG);
+        modalBottomSheetFragment.show(getChildFragmentManager(), ModalBottomSheetFragment.TAG);
     }
 
     public void onNavigateIconClick() {

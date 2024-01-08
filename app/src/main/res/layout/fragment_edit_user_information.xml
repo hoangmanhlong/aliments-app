@@ -1,35 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
+
     <data>
+
         <variable
             name="fragment"
             type="com.example.loginapp.view.fragment.edit_user_profile.EditUserInformationFragment" />
+
         <variable
             name="userData"
             type="com.example.loginapp.model.entity.UserData" />
     </data>
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".EditUserInformationFragment"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:context=".EditUserInformationFragment">
 
         <LinearLayout
-            app:layout_constraintTop_toTopOf="parent"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <Button
+            <ImageButton
                 android:id="@+id/navigationIcon"
-                android:layout_width="@dimen/_30sdp"
-                android:layout_height="@dimen/_30sdp"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
                 android:layout_margin="@dimen/_8sdp"
-                android:background="@drawable/ic_back"
-                android:onClick="@{() -> fragment.onNavigateUp()}" />
+                android:background="@color/design_default_color_background"
+                android:contentDescription="@null"
+                android:onClick="@{() -> fragment.onNavigateUp()}"
+                android:src="@drawable/arrow___left_2"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -43,20 +52,20 @@
         </LinearLayout>
 
         <LinearLayout
-            android:padding="@dimen/_16sdp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="@dimen/_16sdp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_marginVertical="@dimen/_16sdp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/_16sdp">
 
                 <com.google.android.material.imageview.ShapeableImageView
-                    imgUrl="@{userData.photoUrl}"
                     android:id="@+id/user_image"
+                    imgUrl="@{userData.photoUrl}"
                     android:layout_width="@dimen/_80sdp"
                     android:layout_height="@dimen/_80sdp"
                     android:adjustViewBounds="true"
@@ -68,85 +77,88 @@
                     app:shapeAppearance="@style/circleImageView" />
 
                 <ImageButton
-                    android:onClick="@{() -> fragment.onEditImage()}"
                     android:id="@+id/editAvatar"
                     android:layout_width="@dimen/_30sdp"
                     android:layout_height="@dimen/_30sdp"
                     android:background="@drawable/edit_avatar_button"
+                    android:onClick="@{() -> fragment.onEditImage()}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:layout_marginVertical="@dimen/_4sdp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/_4sdp"
                 android:hint="Username"
                 app:endIconMode="clear_text"
                 app:startIconDrawable="@drawable/lock">
+
                 <com.google.android.material.textfield.TextInputEditText
-                    android:text="@{userData.username}"
                     android:id="@+id/username_input"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:singleLine="true"
+                    android:imeOptions="actionNext"
                     android:inputType="text"
-                    android:imeOptions="actionNext" />
+                    android:singleLine="true"
+                    android:text="@{userData.username}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:layout_marginVertical="@dimen/_4sdp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/_4sdp"
                 android:hint="Phone number"
                 app:endIconMode="clear_text"
                 app:startIconDrawable="@drawable/ic_key">
+
                 <com.google.android.material.textfield.TextInputEditText
-                    android:text="@{userData.phoneNumber}"
                     android:id="@+id/phoneNumber_input"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:singleLine="true"
+                    android:imeOptions="actionNext"
                     android:inputType="number"
-                    android:imeOptions="actionNext" />
+                    android:singleLine="true"
+                    android:text="@{userData.phoneNumber}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:layout_marginVertical="@dimen/_4sdp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/_4sdp"
                 android:hint="Address"
                 app:endIconMode="clear_text"
                 app:startIconDrawable="@drawable/ic_key">
+
                 <com.google.android.material.textfield.TextInputEditText
-                    android:text="@{userData.address}"
                     android:id="@+id/address_input"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:singleLine="true"
+                    android:imeOptions="actionDone"
                     android:inputType="text"
-                    android:imeOptions="actionDone" />
+                    android:singleLine="true"
+                    android:text="@{userData.address}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <ProgressBar
-                android:layout_gravity="center_horizontal"
                 android:id="@+id/register_processBar"
                 android:layout_width="wrap_content"
-                android:visibility="gone"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:visibility="gone" />
 
             <Button
                 android:id="@+id/save"
+                style="@style/Widget.MaterialComponents.Button"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40sdp"
                 android:layout_marginVertical="@dimen/_8sdp"
-                style="@style/Widget.MaterialComponents.Button"
-                android:text="Save"
                 android:onClick="@{() -> fragment.saveUserData()}"
+                android:text="Save"
                 android:textAllCaps="false" />
 
         </LinearLayout>

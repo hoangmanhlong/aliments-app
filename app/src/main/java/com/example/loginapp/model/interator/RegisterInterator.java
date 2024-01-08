@@ -62,7 +62,7 @@ public class RegisterInterator {
                             listener.onShowProcessBar(false);
                         } else {
                             task.getException().getMessage();
-                            listener.onRegisterMessage("Authentication failed.");
+                            listener.onRegisterMessage("Account already exists");
                             listener.onShowProcessBar(false);
                         }
                     }

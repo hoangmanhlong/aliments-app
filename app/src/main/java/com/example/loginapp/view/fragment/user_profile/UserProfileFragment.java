@@ -54,7 +54,7 @@ public class UserProfileFragment extends Fragment implements UserProfileView {
     public void logOut() {
         FirebaseAuth.getInstance().signOut();
         startActivity(new Intent(App.getApplication(), LoginActivity.class));
-        this.requireActivity().finish();
+        requireActivity().finish();
     }
 
     public void goEditUserScreen() {

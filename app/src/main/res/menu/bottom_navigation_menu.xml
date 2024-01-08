@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/homeFragment"
-        android:icon="@drawable/ic_home"
+        android:icon="@drawable/ic_home_gray"
         android:enabled="true"
         android:title="@null" />
     <item android:id="@+id/searchProductFragment"
@@ -9,15 +9,15 @@
         android:enabled="true"
         android:title="@null" />
     <item android:id="@+id/cartFragment"
-        android:icon="@drawable/shopping_cart"
+        android:icon="@drawable/ic_cart"
         android:enabled="true"
         android:title="@null" />
     <item android:id="@+id/favoriteProductFragment"
-        android:icon="@drawable/favorite"
+        android:icon="@drawable/ic_favorite_gray"
         android:enabled="true"
         android:title="@null" />
     <item android:id="@+id/userProfileFragment"
-        android:icon="@drawable/single_01"
+        android:icon="@drawable/ic_user_gray"
         android:enabled="true"
         android:title="@null" />
 </menu>

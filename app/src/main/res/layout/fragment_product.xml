@@ -14,238 +14,249 @@
             type="com.example.loginapp.data.remote.api.dto.Product" />
     </data>
 
-    <LinearLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/design_default_color_background"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:background="@color/design_default_color_background"
+            android:orientation="vertical">
 
-            <ImageButton
-                android:id="@+id/navigationIcon"
-                android:layout_width="@dimen/_25sdp"
-                android:layout_height="@dimen/_25sdp"
-                android:layout_margin="@dimen/_8sdp"
-                android:background="@drawable/ic_back"
-                android:onClick="@{() -> fragment.onNavigateIconClick()}" />
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-
-            <ImageButton
-                android:id="@+id/favorite_btn"
-                android:layout_width="@dimen/_25sdp"
-                android:layout_height="@dimen/_25sdp"
-                android:layout_margin="@dimen/_8sdp"
-                android:background="@color/design_default_color_background"
-                android:onClick="@{() -> fragment.onFavoriteIconClick()}"
-                android:src="@drawable/favorite" />
-        </LinearLayout>
-
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="?attr/actionBarSize"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:id="@+id/product_image_detail"
-                    imgUrl="@{product.thumbnail}"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                <ImageButton
+                    android:id="@+id/navigationIcon"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
                     android:layout_margin="@dimen/_8sdp"
-                    android:adjustViewBounds="true"
-                    android:elevation="@dimen/_4sdp"
-                    android:scaleType="fitCenter"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    android:background="@color/design_default_color_background"
+                    android:contentDescription="@null"
+                    android:onClick="@{() -> fragment.onNavigateIconClick()}"
+                    android:src="@drawable/arrow___left_2"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:shapeAppearance="@style/specific_rounded_corner" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
 
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <View
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="@dimen/_16sdp"
-                    app:layout_constraintTop_toBottomOf="@id/product_image_detail">
+                    android:layout_weight="1" />
+
+                <ImageButton
+                    android:id="@+id/favorite_btn"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_margin="@dimen/_8sdp"
+                    android:background="@color/design_default_color_background"
+                    android:onClick="@{() -> fragment.onFavoriteIconClick()}"
+                    android:src="@drawable/ic_favorite_gray" />
+            </LinearLayout>
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/product_image_detail"
+                        imgUrl="@{product.thumbnail}"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_8sdp"
+                        android:adjustViewBounds="true"
+                        android:elevation="@dimen/_4sdp"
+                        android:scaleType="fitCenter"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:shapeAppearance="@style/specific_rounded_corner" />
+
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginVertical="@dimen/_4sdp"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:fontFamily="@font/montserrat_bold"
-                            android:text="@{product.title}"
-                            android:textSize="@dimen/_16ssp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/_8sdp"
-                            android:fontFamily="@font/montserrat_bold"
-                            android:text="@{@string/price_format(product.intToString())}"
-                            android:textColor="@color/cam"
-                            android:textSize="@dimen/_18ssp"
-                            android:textStyle="bold" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginVertical="@dimen/_4sdp"
-                        android:orientation="horizontal"
-                        android:weightSum="10">
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="4"
-                            android:fontFamily="@font/poppins_bold"
-                            android:text="Rating: "
-                            android:textSize="@dimen/_13ssp"
-                            android:textStyle="bold" />
+                        android:orientation="vertical"
+                        android:padding="@dimen/_16sdp"
+                        app:layout_constraintTop_toBottomOf="@id/product_image_detail">
 
                         <LinearLayout
-                            android:layout_width="0dp"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="6"
-                            android:gravity="center_vertical">
+                            android:layout_marginVertical="@dimen/_4sdp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/montserrat_bold"
+                                android:text="@{product.title}"
+                                android:textSize="@dimen/_16ssp"
+                                android:textStyle="bold" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginEnd="@dimen/_4sdp"
-                                android:fontFamily="@font/poppins_regular"
+                                android:layout_marginStart="@dimen/_8sdp"
+                                android:fontFamily="@font/montserrat_bold"
+                                android:text="@{@string/price_format(product.intToString())}"
                                 android:textColor="@color/cam"
-                                android:textSize="@dimen/_14ssp"
-                                app:doubleToString="@{product.rating}" />
+                                android:textSize="@dimen/_18ssp"
+                                android:textStyle="bold" />
 
-                            <ImageView
-                                android:layout_width="@dimen/_14sdp"
-                                android:layout_height="@dimen/_14sdp"
-                                android:src="@drawable/star_2" />
                         </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginVertical="@dimen/_4sdp"
+                            android:orientation="horizontal"
+                            android:weightSum="10">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:fontFamily="@font/poppins_bold"
+                                android:text="Rating: "
+                                android:textSize="@dimen/_13ssp"
+                                android:textStyle="bold" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="6"
+                                android:gravity="center_vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginEnd="@dimen/_4sdp"
+                                    android:fontFamily="@font/poppins_regular"
+                                    android:textColor="@color/cam"
+                                    android:textSize="@dimen/_14ssp"
+                                    app:doubleToString="@{product.rating}" />
+
+                                <ImageView
+                                    android:layout_width="@dimen/_14sdp"
+                                    android:layout_height="@dimen/_14sdp"
+                                    android:src="@drawable/star_2" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginVertical="@dimen/_4sdp"
+                            android:orientation="horizontal"
+                            android:weightSum="10">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_4sdp"
+                                android:layout_weight="4"
+                                android:fontFamily="@font/poppins_bold"
+                                android:text="Brand: "
+                                android:textSize="@dimen/_13ssp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/_4sdp"
+                                android:layout_weight="6"
+                                android:fontFamily="@font/poppins_regular"
+                                android:text="@{product.brand}"
+                                android:textColor="@color/gray_500"
+                                android:textSize="@dimen/_12ssp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginVertical="@dimen/_4sdp"
+                            android:orientation="horizontal"
+                            android:weightSum="10">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:fontFamily="@font/poppins_bold"
+                                android:text="Description: "
+                                android:textSize="@dimen/_13ssp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="6"
+                                android:fontFamily="@font/poppins_regular"
+                                android:text="@{product.description}"
+                                android:textColor="@color/gray_500"
+                                android:textSize="@dimen/_12ssp" />
+                        </LinearLayout>
+
+
                     </LinearLayout>
 
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginVertical="@dimen/_4sdp"
-                        android:orientation="horizontal"
-                        android:weightSum="10">
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/_4sdp"
-                            android:layout_weight="4"
-                            android:fontFamily="@font/poppins_bold"
-                            android:text="Brand: "
-                            android:textSize="@dimen/_13ssp"
-                            android:textStyle="bold" />
+            </ScrollView>
 
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/_4sdp"
-                            android:layout_weight="6"
-                            android:fontFamily="@font/poppins_regular"
-                            android:text="@{product.brand}"
-                            android:textColor="@color/gray_500"
-                            android:textSize="@dimen/_12ssp" />
-                    </LinearLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_60sdp"
+                android:background="@drawable/buy_action_background"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginVertical="@dimen/_4sdp"
-                        android:orientation="horizontal"
-                        android:weightSum="10">
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/floatingBtnBuy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_30sdp"
+                    android:onClick="@{() -> fragment.onCartBtnClick()}"
+                    app:backgroundTint="@color/design_default_color_background"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_cart" />
 
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="4"
-                            android:fontFamily="@font/poppins_bold"
-                            android:text="Description: "
-                            android:textSize="@dimen/_13ssp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="6"
-                            android:fontFamily="@font/poppins_regular"
-                            android:text="@{product.description}"
-                            android:textColor="@color/gray_500"
-                            android:textSize="@dimen/_12ssp" />
-                    </LinearLayout>
-
-
-                </LinearLayout>
-
+                <Button
+                    android:id="@+id/buy"
+                    android:layout_width="@dimen/_200sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_marginEnd="@dimen/_14sdp"
+                    android:backgroundTint="@color/black"
+                    android:fontFamily="@font/poppins_bold"
+                    android:onClick="@{() -> fragment.showBottomSheet()}"
+                    android:text="Buy now"
+                    app:elevation="@dimen/_10sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </ScrollView>
+        </LinearLayout>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_60sdp"
-            android:background="@drawable/buy_action_background"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
-
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/floatingBtnBuy"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_30sdp"
-                android:onClick="@{() -> fragment.onCartBtnClick()}"
-                app:backgroundTint="@color/design_default_color_background"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/shopping_cart" />
-
-            <Button
-                android:id="@+id/buy"
-                android:layout_width="@dimen/_200sdp"
-                android:layout_height="@dimen/_50sdp"
-                android:layout_marginEnd="@dimen/_14sdp"
-                android:backgroundTint="@color/black"
-                android:fontFamily="@font/poppins_bold"
-                android:text="Buy now"
-                app:elevation="@dimen/_10sdp"
-                android:onClick="@{() -> fragment.showBottomSheet()}"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    </LinearLayout>
-
+        <include layout="@layout/fragment_bottom_sheet" />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </layout>

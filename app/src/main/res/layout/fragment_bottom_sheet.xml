@@ -1,19 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
+
     <data>
+
         <variable
             name="product"
             type="com.example.loginapp.data.remote.api.dto.Product" />
+
         <variable
             name="fragment"
             type="com.example.loginapp.view.fragment.bottom_sheet.ModalBottomSheetFragment" />
     </data>
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/bottom_sheet_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        app:behavior_hideable="true"
+        app:behavior_peekHeight="0dp"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -40,10 +48,10 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:text="@{product.title}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/montserrat_bold"
+                    android:text="@{product.title}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="Nike Air VaporMax Evoo" />
@@ -52,8 +60,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_8sdp"
-                    android:text="@{@string/price_format(product.intToString())}"
                     android:fontFamily="@font/montserrat_bold"
+                    android:text="@{@string/price_format(product.intToString())}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="1000$" />
@@ -86,29 +94,24 @@
                 android:layout_weight="1" />
 
             <ImageButton
-                android:onClick="@{() ->fragment.onMinusBtnClick()}"
                 android:layout_width="@dimen/_25sdp"
                 android:layout_height="@dimen/_25sdp"
-                android:background="@drawable/minus" />
-
-
+                android:background="@drawable/minus"
+                 />
 
             <TextView
+                android:id="@+id/quantity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:id="@+id/quantity"
-                android:text="1"
                 android:layout_marginHorizontal="@dimen/_4sdp"
                 android:fontFamily="@font/poppins_bold"
-                />
+                android:text="1" />
 
             <ImageButton
-                android:onClick="@{() ->fragment.onPlusBtnClick() }"
                 android:layout_width="@dimen/_25sdp"
                 android:layout_height="@dimen/_25sdp"
                 android:background="@drawable/plus" />
-
 
         </LinearLayout>
 
@@ -120,6 +123,7 @@
             android:backgroundTint="@color/black"
             android:fontFamily="@font/poppins_bold"
             android:text="Purchase"
+            android:onClick="@{() -> fragment.onBuyClick()}"
             android:textColor="@color/white"
             app:elevation="@dimen/_10sdp"
             app:layout_constraintBottom_toBottomOf="parent"
