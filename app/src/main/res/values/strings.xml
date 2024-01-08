@@ -19,4 +19,7 @@
     <string name="brand">Brand: %s</string>
     <string name="welcome">Hi %s !</string>
     <string name="searchbar_hint">Search a product</string>
+    <string name="dialog_message">Are you sure you want to delete the product?</string>
+    <string name="positive_button_title">OK</string>
+    <string name="negative_button_title">Cancel</string>
 </resources>

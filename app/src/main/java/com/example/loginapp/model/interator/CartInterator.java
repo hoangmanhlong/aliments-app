@@ -2,11 +2,14 @@ package com.example.loginapp.model.interator;
 
 import androidx.annotation.NonNull;
 
+import com.example.loginapp.adapter.cart_adapter.CartItemClickListener;
 import com.example.loginapp.data.remote.api.dto.Product;
 import com.example.loginapp.data.remote.service.Constant;
 import com.example.loginapp.model.entity.FirebaseProduct;
 import com.example.loginapp.model.listener.CartListener;
 import com.example.loginapp.model.listener.FavoriteListener;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -51,8 +54,15 @@ public class CartInterator {
         });
     }
 
-    public void addQuantity(int quantity, int productId) {
+    public void updateQuantity(int id, int quantity) {
+        cartRef
+            .child(currentUser.getUid())
+            .child(String.valueOf(id))
+            .child("quantity").setValue(String.valueOf(quantity));
+    }
 
-
+    public void  deleteProductInFirebase(int id) {
+        cartRef.child(currentUser.getUid())
+            .child(String.valueOf(id)).removeValue();
     }
 }

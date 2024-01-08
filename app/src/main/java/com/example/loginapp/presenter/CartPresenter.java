@@ -30,7 +30,11 @@ public class CartPresenter implements CartListener {
         view.onMessage(message);
     }
 
-    public void addQuantity(int quantity, int productId) {
-        interator.addQuantity(quantity, productId);
+    public void updateQuantity(int id, int quantity) {
+        interator.updateQuantity(id, quantity);
+    }
+
+    public void deleteProductInFirebase(int id) {
+        interator.deleteProductInFirebase(id);
     }
 }
