@@ -56,6 +56,7 @@
 
                 <ImageButton
                     android:id="@+id/homeIcon"
+                    android:clickable="false"
                     android:layout_width="@dimen/_20sdp"
                     android:layout_height="@dimen/_20sdp"
                     android:background="@drawable/ic_home"
@@ -87,6 +88,7 @@
 
                 <ImageButton
                     android:id="@+id/searchIcon"
+                    android:clickable="false"
                     android:layout_width="@dimen/_20sdp"
                     android:layout_height="@dimen/_20sdp"
                     android:backgroundTint="@color/gray_500"
@@ -119,6 +121,7 @@
                 <ImageButton
                     android:backgroundTint="@color/gray_500"
                     android:id="@+id/cartIcon"
+                    android:clickable="false"
                     android:layout_width="@dimen/_20sdp"
                     android:layout_height="@dimen/_20sdp"
                     android:background="@drawable/shopping_cart" />
@@ -150,6 +153,7 @@
                 <ImageButton
                     android:backgroundTint="@color/gray_500"
                     android:id="@+id/favoriteIcon"
+                    android:clickable="false"
                     android:layout_width="@dimen/_20sdp"
                     android:layout_height="@dimen/_20sdp"
                     android:background="@drawable/favorite" />
@@ -181,6 +185,7 @@
                 <ImageButton
                     android:backgroundTint="@color/gray_500"
                     android:id="@+id/userIcon"
+                    android:clickable="false"
                     android:layout_width="@dimen/_20sdp"
                     android:layout_height="@dimen/_20sdp"
                     android:background="@drawable/single_01" />

@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
@@ -17,7 +16,6 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
-import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.loginapp.R;
@@ -27,7 +25,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class MainActivity extends AppCompatActivity {
 
     private static final long DOUBLE_CLICK_TIME_DELTA = 300;
-        // Thời gian giữa hai lần nhấn (milliseconds)
+    // Thời gian giữa hai lần nhấn (milliseconds)
     private long lastClickTime = 0;
 
     private boolean backPressedOnce = false;
@@ -59,9 +57,8 @@ public class MainActivity extends AppCompatActivity {
 
         fragmentManager = getSupportFragmentManager();
         NavHostFragment navHostFragment = (NavHostFragment) fragmentManager
-            .findFragmentById(R.id.main_container);
+                .findFragmentById(R.id.main_container);
 
-        assert navHostFragment != null;
         navController = navHostFragment.getNavController();
 
 //        BottomNavigationView navigationView = binding.bottomNavigation;
@@ -69,33 +66,32 @@ public class MainActivity extends AppCompatActivity {
 //        NavigationUI.setupWithNavController(navigationView, navController);
 
         linearLayouts = new LinearLayout[]{
-            binding.home,
-            binding.search,
-            binding.cart,
-            binding.favorite,
-            binding.user
+                binding.home,
+                binding.search,
+                binding.cart,
+                binding.favorite,
+                binding.user
         };
 
         views = new View[]{
-            binding.homeView,
-            binding.searchView,
-            binding.cartView,
-            binding.favoriteView,
-            binding.userView
+                binding.homeView,
+                binding.searchView,
+                binding.cartView,
+                binding.favoriteView,
+                binding.userView
         };
 
         imageButtons = new ImageButton[]{
-            binding.homeIcon,
-            binding.searchIcon,
-            binding.cartIcon,
-            binding.favoriteIcon,
-            binding.userIcon
+                binding.homeIcon,
+                binding.searchIcon,
+                binding.cartIcon,
+                binding.favoriteIcon,
+                binding.userIcon
         };
 
         for (int i = 0; i < linearLayouts.length; i++) {
             final int index = i;
             linearLayouts[i].setOnClickListener(v -> handleLinearLayoutClick(index));
-            imageButtons[i].setOnClickListener(v -> handleLinearLayoutClick(index));
         }
 
     }
@@ -105,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < linearLayouts.length; i++) {
             if (i == selectedIndex) {
                 ColorStateList colorStateList =
-                    ContextCompat.getColorStateList(this, R.color.black);
+                        ContextCompat.getColorStateList(this, R.color.black);
                 views[i].setVisibility(View.VISIBLE);
                 views[i].setBackgroundColor(R.color.md_theme_dark_background);
                 views[i].setBackgroundColor(Color.BLACK);
@@ -116,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
                         navController.navigate(R.id.homeFragment);
                         break;
                     case 1:
+                        navController.navigate(R.id.searchProductFragment);
                         break;
                     case 2:
                         navController.navigate(R.id.cartFragment);
@@ -131,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
                 views[i].setVisibility(View.GONE);
                 views[i].setBackgroundColor(R.color.white);
                 ColorStateList colorStateList =
-                    ContextCompat.getColorStateList(this, R.color.gray_500);
+                        ContextCompat.getColorStateList(this, R.color.gray_500);
                 imageButtons[i].setBackgroundTintList(colorStateList);
             }
         }
