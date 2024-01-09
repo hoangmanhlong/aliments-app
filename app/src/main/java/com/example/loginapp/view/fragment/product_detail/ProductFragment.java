@@ -31,8 +31,6 @@ public class ProductFragment extends Fragment implements ProductView {
 
     private Product tempProduct;
 
-    private static int productId;
-
     @Nullable
     @Override
     public View onCreateView(
@@ -53,7 +51,7 @@ public class ProductFragment extends Fragment implements ProductView {
             requireActivity().findViewById(R.id.bottom_navigation);
         bottomNavigationView.setVisibility(View.GONE);
         if (getArguments() != null) {
-            productId = getArguments().getInt("productId");
+            int productId = getArguments().getInt("productId");
             presenter.getProduct(productId);
         }
         modalBottomSheetFragment = new ModalBottomSheetFragment();
@@ -87,7 +85,7 @@ public class ProductFragment extends Fragment implements ProductView {
 
     @Override
     public void onMessage(String message) {
-        Toast.makeText(this.getContext(), message, Toast.LENGTH_SHORT).show();
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show();
     }
 
     @SuppressLint("ResourceAsColor")

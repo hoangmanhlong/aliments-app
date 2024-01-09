@@ -17,7 +17,6 @@ import com.example.loginapp.databinding.ActivityMainBinding;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
-
     private NavController navController;
 
     private ActivityMainBinding binding;
@@ -25,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
     private View[] views;
 
     private ImageView[] imageViews;
-    ColorStateList colorStateList;
 
     private final int[] iconGray = {
         R.drawable.ic_home_gray,
@@ -46,10 +44,11 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         binding.setActivity(this);
-        colorStateList =
-            ContextCompat.getColorStateList(this, R.color.black);
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        NavHostFragment navHostFragment = (NavHostFragment) fragmentManager
+
+        binding.homeView.setBackgroundResource(R.color.black);
+        binding.homeIcon.setImageResource(R.drawable.ic_home_dark);
+
+        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager()
             .findFragmentById(R.id.main_container);
 
         assert navHostFragment != null;
@@ -76,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
         resetView();
         binding.homeView.setBackgroundResource(R.color.black);
         binding.homeIcon.setImageResource(R.drawable.ic_home_dark);
-        navController.popBackStack();
+//        navController.popBackStack();
         navController.navigate(R.id.homeFragment);
     }
 
@@ -84,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
         resetView();
         binding.searchView.setBackgroundResource(R.color.black);
         binding.searchIcon.setImageResource(R.drawable.ic_search_dark);
-        navController.popBackStack();
+//        navController.popBackStack();
         navController.navigate(R.id.searchProductFragment);
     }
 
@@ -92,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
         resetView();
         binding.cartView.setBackgroundResource(R.color.black);
         binding.cartIcon.setImageResource(R.drawable.ic_cart_dark);
-        navController.popBackStack();
+//        navController.popBackStack();
         navController.navigate(R.id.cartFragment);
     }
 
@@ -100,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
         resetView();
         binding.favoriteView.setBackgroundResource(R.color.black);
         binding.favoriteIcon.setImageResource(R.drawable.ic_favorite_dark);
-        navController.popBackStack();
+//        navController.popBackStack();
         navController.navigate(R.id.favoriteProductFragment);
     }
 
@@ -108,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
         resetView();
         binding.userView.setBackgroundResource(R.color.black);
         binding.userIcon.setImageResource(R.drawable.ic_user_dark);
-        navController.popBackStack();
+//        navController.popBackStack();
         navController.navigate(R.id.userProfileFragment);
     }
 

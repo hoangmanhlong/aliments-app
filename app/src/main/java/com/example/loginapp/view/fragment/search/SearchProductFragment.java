@@ -1,5 +1,7 @@
 package com.example.loginapp.view.fragment.search;
 
+import static com.example.loginapp.view.fragment.product_favorite.FavoriteProductFragment.TAG_Origin;
+
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
@@ -61,6 +63,9 @@ public class SearchProductFragment extends Fragment implements SearchView {
         LinearLayout bottomNavigationView =
             requireActivity().findViewById(R.id.bottom_navigation);
         bottomNavigationView.setVisibility(View.VISIBLE);
+        if (isAdded()) {
+            Log.d(TAG_Origin, "onViewCreated: Has context");
+        } else Log.d(TAG_Origin, "onViewCreated: No context");
 
         binding.query.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override

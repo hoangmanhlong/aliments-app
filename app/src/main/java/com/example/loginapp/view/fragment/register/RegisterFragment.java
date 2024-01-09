@@ -44,6 +44,7 @@ public class RegisterFragment extends Fragment implements RegisterView {
         super.onViewCreated(view, savedInstanceState);
         binding.setRegisterFragment(this);
         registerPresenter = new RegisterPresenter(this);
+
         view.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {

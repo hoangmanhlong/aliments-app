@@ -1,5 +1,10 @@
 package com.example.loginapp.view.fragment.home;
 
+import static com.example.loginapp.view.fragment.product_favorite.FavoriteProductFragment.TAG_Origin;
+
+import android.content.Context;
+import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -26,7 +31,10 @@ import com.example.loginapp.data.remote.api.dto.Product;
 import com.example.loginapp.databinding.FragmentHomeBinding;
 import com.example.loginapp.model.entity.UserData;
 import com.example.loginapp.presenter.HomePresenter;
+import com.example.loginapp.view.activities.LoginActivity;
+import com.example.loginapp.view.activities.MainActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
 import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderView;
@@ -71,6 +79,10 @@ public class HomeFragment extends Fragment implements HomeView {
         homePresenter = new HomePresenter(this);
         binding.setHomeFragment(this);
         spinner = binding.categories;
+
+        if (isAdded()) {
+            Log.d(TAG_Origin, "onViewCreated: Has context");
+        } else Log.d(TAG_Origin, "onViewCreated: No context");
 
         LinearLayout bottomNavigationView =
             requireActivity().findViewById(R.id.bottom_navigation);
@@ -153,15 +165,15 @@ public class HomeFragment extends Fragment implements HomeView {
 
     @Override
     public void onLoadError(String message) {
-        Toast.makeText(App.getApplication(), message, Toast.LENGTH_SHORT).show();
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onLoadCategories(List<String> categories) {
-
+        Context context = getContext();
         ArrayAdapter<String> adapter =
             new ArrayAdapter<>(
-                App.getApplication(),
+                context,
                 android.R.layout.simple_spinner_item,
                 categories
             );

@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +27,9 @@ import java.util.List;
 
 
 public class FavoriteProductFragment extends Fragment implements FavoriteView {
+
+    private final String TAG = this.toString();
+    public static String TAG_Origin = "Check context";
 
     private FavoritePresenter presenter;
 
@@ -53,6 +57,9 @@ public class FavoriteProductFragment extends Fragment implements FavoriteView {
         LinearLayout bottomNavigationView =
             requireActivity().findViewById(R.id.bottom_navigation);
         bottomNavigationView.setVisibility(View.VISIBLE);
+        if (isAdded()) {
+            Log.d(TAG_Origin, "onViewCreated: Has context");
+        } else Log.d(TAG_Origin, "onViewCreated: No context");
     }
 
     @Override
@@ -71,6 +78,6 @@ public class FavoriteProductFragment extends Fragment implements FavoriteView {
 
     @Override
     public void onMessage(String message) {
-        Toast.makeText(App.getApplication(), message, Toast.LENGTH_SHORT).show();
+        Toast.makeText(requireActivity(), message, Toast.LENGTH_SHORT).show();
     }
 }

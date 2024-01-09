@@ -9,5 +9,6 @@ public interface CartItemClickListener {
 
     void onDeleteProduct(int id);
 
-    void updateTotal(int price);
+    void saveToListSelected(FirebaseProduct product);
+    void deleteFromList(FirebaseProduct product);
 }

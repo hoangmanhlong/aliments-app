@@ -31,6 +31,6 @@ public class LoginPresenter implements LoginListener {
 
     @Override
     public void onShowProcessBar(Boolean show) {
-
+        view.onShowProcessBar(show);
     }
 }

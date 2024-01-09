@@ -44,7 +44,7 @@ public class FavoriteInterator {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                listener.onMessage("Error, Try again");
+
             }
         });
     }

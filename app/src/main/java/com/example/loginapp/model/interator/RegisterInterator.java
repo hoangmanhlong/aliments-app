@@ -37,10 +37,7 @@ public class RegisterInterator {
         String confirmPassword
     ) {
         listener.onShowProcessBar(true);
-        if (email.equals("") || password.equals("") || confirmPassword.equals("")) {
-            listener.onRegisterMessage("Please enter complete information");
-            listener.onShowProcessBar(false);
-        } else if (!isValidEmail(email)) {
+        if (!isValidEmail(email)) {
             listener.onRegisterMessage("Email format is wrong, Please re-enter");
             listener.onShowProcessBar(false);
         } else if (!isPasswordValid(password)) {

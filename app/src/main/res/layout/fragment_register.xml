@@ -93,7 +93,7 @@
                 app:boxCornerRadiusBottomStart="30dp"
                 app:boxCornerRadiusTopEnd="30dp"
                 app:boxCornerRadiusTopStart="30dp"
-                app:endIconMode="clear_text"
+                app:endIconMode="password_toggle"
                 app:startIconDrawable="@drawable/lock">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -115,18 +115,16 @@
                 app:boxCornerRadiusBottomStart="30dp"
                 app:boxCornerRadiusTopEnd="30dp"
                 app:boxCornerRadiusTopStart="30dp"
-                app:endIconMode="clear_text"
+                app:endIconMode="password_toggle"
                 app:startIconDrawable="@drawable/ic_key">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/confirm_password_input"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:imeOptions="actionNext"
+                    android:imeOptions="actionDone"
                     android:inputType="text"
                     android:singleLine="true" />
-
-
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -135,7 +133,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_46sdp"
                 android:layout_marginVertical="@dimen/_8sdp"
-                android:backgroundTint="@color/black"
+                android:enabled="false"
                 android:onClick="@{() -> registerFragment.register()}"
                 android:text="@string/register"
                 android:textAllCaps="false" />

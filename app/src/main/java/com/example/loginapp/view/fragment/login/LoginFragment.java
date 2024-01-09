@@ -22,6 +22,8 @@ import com.example.loginapp.presenter.LoginPresenter;
 import com.example.loginapp.view.activities.MainActivity;
 import com.example.loginapp.view.state.LoginButtonObserver;
 
+import java.util.Objects;
+
 public class LoginFragment extends Fragment implements LoginView {
     private FragmentLoginBinding binding;
     private LoginPresenter loginPresenter;
@@ -42,19 +44,25 @@ public class LoginFragment extends Fragment implements LoginView {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         binding.setLoginFragment(this);
-        hideKeyboardFrom(this.requireContext(), view);
+        hideKeyboardFrom(this.requireActivity(), view);
         loginPresenter = new LoginPresenter(this);
 
         if (getArguments() != null) {
             String email = getArguments().getString("email");
             String password = getArguments().getString("password");
-            binding.emailInput.setText(email);
-            binding.passwordInput.setText(password);
-            assert email != null;
-            assert password != null;
-            if (!email.equals("") && !password.equals("")) {
+            if (!email.isEmpty() && !password.isEmpty()) {
+                binding.emailInput.setText(email);
+                binding.passwordInput.setText(password);
+                binding.loginEmailBtn.setEnabled(true);
                 onEmailClick();
             }
+        }
+
+        if(Objects.requireNonNull(binding.emailInput.getText()).toString().isEmpty() || Objects.requireNonNull(
+            binding.passwordInput.getText()).toString().isEmpty()) {
+            binding.loginEmailBtn.setEnabled(false);
+        } else {
+            binding.loginEmailBtn.setEnabled(true);
         }
 
         view.setOnTouchListener((v, event) -> {
@@ -107,12 +115,18 @@ public class LoginFragment extends Fragment implements LoginView {
 
     @Override
     public void onLoginMessage(String message) {
-        Toast.makeText(this.getContext(), message, Toast.LENGTH_SHORT).show();
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onShowProcessBar(Boolean show) {
-
+        if (show) {
+            binding.loginEmailBtn.setVisibility(View.GONE);
+            binding.progressBar.setVisibility(View.VISIBLE);
+        } else {
+            binding.progressBar.setVisibility(View.GONE);
+            binding.loginEmailBtn.setVisibility(View.VISIBLE);
+        }
     }
 
     public static void hideKeyboardFrom(Context context, View view) {

@@ -14,26 +14,56 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.loginapp.R;
 import com.example.loginapp.databinding.LayoutItemCartBinding;
 import com.example.loginapp.model.entity.FirebaseProduct;
-import com.example.loginapp.view.fragment.cart.OnSelectAllListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CartAdapter extends ListAdapter<FirebaseProduct, CartAdapter.ItemCartViewHolder> {
     private final String TAG = this.toString();
 
-    private CartItemClickListener listener;
+    private final CartItemClickListener listener;
 
-    public CartAdapter(CartItemClickListener listener) {
+    private RecyclerView recyclerView;
+
+    public CartAdapter(CartItemClickListener listener, RecyclerView recyclerView) {
         super(DiffCallback);
         this.listener = listener;
+        this.recyclerView = recyclerView;
+    }
+
+    public void checkAllItems(boolean isChecked) {
+        for (int i = 0; i < getItemCount(); i++) {
+            ItemCartViewHolder holder = (ItemCartViewHolder) recyclerView.findViewHolderForAdapterPosition(i);
+            if (holder != null) {
+                holder.binding.checkbox.setChecked(isChecked);
+            }
+        }
     }
 
     @NonNull
     @Override
     public ItemCartViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ItemCartViewHolder(LayoutItemCartBinding.inflate(
+        ItemCartViewHolder holder = new ItemCartViewHolder(LayoutItemCartBinding.inflate(
             LayoutInflater.from(parent.getContext()),
             parent,
             false
         ), listener);
+        return holder;
+    }
+
+    public void removeItem(int position) {
+        listener.onDeleteProduct(getItem(position).getId());
+        List<FirebaseProduct> currentList = new ArrayList<>(getCurrentList());
+        Log.d(TAG, String.valueOf(currentList.size()));
+        currentList.remove(position);
+        Log.d(TAG, String.valueOf(currentList.size()));
+        submitList(currentList);
+    }
+
+    public void restoreItem(FirebaseProduct item, int position) {
+        List<FirebaseProduct> currentList = new ArrayList<>(getCurrentList());
+        currentList.add(position, item);
+        submitList(currentList);
     }
 
     @Override
@@ -41,11 +71,10 @@ public class CartAdapter extends ListAdapter<FirebaseProduct, CartAdapter.ItemCa
         holder.bind(getItem(position));
     }
 
-    public class ItemCartViewHolder extends RecyclerView.ViewHolder implements
-        View.OnClickListener, OnSelectAllListener {
+    public class ItemCartViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, CheckboxListener {
         private final LayoutItemCartBinding binding;
 
-        private CartItemClickListener listener;
+        private final CartItemClickListener listener;
 
         public ItemCartViewHolder(LayoutItemCartBinding binding, CartItemClickListener listener) {
             super(binding.getRoot());
@@ -61,6 +90,7 @@ public class CartAdapter extends ListAdapter<FirebaseProduct, CartAdapter.ItemCa
             binding.setProduct(product);
         }
 
+
         @Override
         public void onClick(View v) {
             int quantity = Integer.parseInt(binding.quantity.getText().toString());
@@ -69,25 +99,17 @@ public class CartAdapter extends ListAdapter<FirebaseProduct, CartAdapter.ItemCa
                 if (quantity > 1) {
                     quantity--;
                     listener.updateQuantity(product.getId(), quantity);
-                    binding.quantity.setText(String.valueOf(quantity));
                 } else {
                     listener.onDeleteProduct(product.getId());
                 }
             } else if (v.getId() == R.id.add) {
                 quantity++;
                 listener.updateQuantity(product.getId(), quantity);
-                binding.quantity.setText(String.valueOf(quantity));
             } else if (v.getId() == R.id.checkbox) {
                 if (binding.checkbox.isChecked()) {
-                    listener.updateTotal(Math.multiplyExact(
-                        product.getPrice(),
-                        Integer.parseInt(product.getQuantity())
-                    ));
+                    listener.saveToListSelected(product);
                 } else {
-                    listener.updateTotal(-Math.multiplyExact(
-                        product.getPrice(),
-                        Integer.parseInt(product.getQuantity())
-                    ));
+                    listener.deleteFromList(product);
                 }
             } else {
                 listener.onItemClick(product);
@@ -95,8 +117,8 @@ public class CartAdapter extends ListAdapter<FirebaseProduct, CartAdapter.ItemCa
         }
 
         @Override
-        public void onSelectAll(boolean check) {
-            binding.checkbox.setChecked(check);
+        public void onSelectAll(boolean show) {
+            binding.checkbox.setChecked(show);
         }
     }
 
@@ -115,7 +137,7 @@ public class CartAdapter extends ListAdapter<FirebaseProduct, CartAdapter.ItemCa
             public boolean areContentsTheSame(
                 @NonNull FirebaseProduct oldItem, @NonNull FirebaseProduct newItem
             ) {
-                return oldItem.equals(newItem);
+                return oldItem.getQuantity().equals(newItem.getQuantity());
             }
         };
 }

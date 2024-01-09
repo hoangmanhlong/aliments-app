@@ -162,50 +162,45 @@
         </LinearLayout>
 
         <LinearLayout
-
+            android:visibility="gone"
             android:id="@+id/linear_input_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_40sdp"
             android:orientation="vertical"
-            android:visibility="gone"
             app:layout_constraintTop_toBottomOf="@id/login_option_view">
 
-            <LinearLayout
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="?attr/textInputFilledStyle"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content"
+                android:imeOptions="actionNext"
+                app:boxBackgroundColor="@android:color/transparent"
+                app:endIconMode="clear_text"
+                app:startIconDrawable="@drawable/email">
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/email" />
-
-                <EditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/email_input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Email"
-                    android:imeOptions="actionNext"
                     android:singleLine="true"
                     android:textColorHint="@color/gray"
-                    android:textSize="14sp" />
-            </LinearLayout>
+                    android:textSize="16sp" />
 
-            <LinearLayout
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="?attr/textInputFilledStyle"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="@dimen/_16sdp"
-                android:gravity="center"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/_10sdp"
+                app:boxBackgroundColor="@android:color/transparent"
+                app:endIconMode="password_toggle"
+                app:startIconDrawable="@drawable/lock">
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/lock" />
-
-                <EditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/password_input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -214,8 +209,9 @@
                     android:inputType="text"
                     android:singleLine="true"
                     android:textColorHint="@color/gray"
-                    android:textSize="14sp" />
-            </LinearLayout>
+                    android:textSize="16sp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
 
             <Button
@@ -227,6 +223,14 @@
                 android:text="Login"
                 android:textAllCaps="false"
                 android:textSize="@dimen/_12ssp" />
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_24sdp" />
 
         </LinearLayout>
 

@@ -49,7 +49,7 @@ public class CartInterator {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                listener.onMessage("Error, Try again");
+                
             }
         });
     }
